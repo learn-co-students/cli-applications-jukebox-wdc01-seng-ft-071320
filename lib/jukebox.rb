@@ -1,13 +1,4 @@
 require 'pry'
-# Add your code here
-# def say_hello(name)
-#   "Hi #{name}!"
-# end
-# puts "Enter your name:"
-# users_name = gets.strip
-#
-# puts say_hello(users_name)
-
 
 # songs = [
 #   "Phoenix - 1901",
@@ -39,16 +30,32 @@ end
 def play(songs)
   puts "Please enter a song name or number:"
   input = gets.strip
-  
-binding.pry
-  if input == songs
-    puts "Playing #{input}"
-  else
-    puts "Invalid input, please try again"
+    if ("1".."9").include?(input)
+      song_num = songs[input.to_i - 1]
+      puts "Playing #{song_num}"
+    elsif songs.include?(input)
+      puts "#{input}"
+    else
+      puts "Invalid input, please try again"
   end
 end
 
-def run
-  puts "Please enter a command:"
 
+def exit_jukebox
+  puts "Goodbye"
+end
+
+
+def run(songs)
+  puts "Please enter a command:"
+  answer = gets.strip
+    if answer == "list"
+      return list(songs)
+    elsif answer == "play"
+      return play(songs)
+    elsif answer == "help"
+      return help
+    elsif answer == "exit"
+      return exit_jukebox
+    end
 end
